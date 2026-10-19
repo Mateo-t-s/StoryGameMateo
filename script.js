@@ -10,7 +10,7 @@
 // --------------------------------------------------
 
 // First, we create a variable for the current scene being displayed
-let currentScene = "backyard";
+let currentScene = "yourDesk";
 
 // Then, we create an object that stores the data for each scene,
 const scenes = {
@@ -34,63 +34,313 @@ const scenes = {
         nextScene: "hallway"
       },
       {
-          text: "Pick up the brass key",
-          action: function () {
-            pickUpItem("brass key");
-          },
-          nextScene: "hallway"
+        text: "Pick up the brass key",
+        action: function () {
+          pickUpItem("brass key");
+        },
+        nextScene: "hallway"
       }
     ]
   },
 
-  entrance: {
-    title: "Location: Entrance",
-    character: "Interviewee:Neighbor",
-    text: "well what I remember...",
+  yourDesk: {
+    title: "Location: Your Desk",
+    text: "Your quiz is still unfinished. There are several problems that you don’t know how to solve.",
     choices: [
       {
-        text: "Ask about the dog",
-        nextScene: "backyard"
+        text: "Work on quiz (will make progress but burn time)",
+        action: function () {
+          updateTime(-1);
+          updateProgress(2.5);
+        },
       },
-         {
-        text: "Ask about the neighbor",
+      {
+        text: "Look at your friend's desk",
+        action: function () {
+          updateTime(-1);
+        },
+        nextScene: "friendDesk"
+      },
+      {
+        text: "Look at wall of shame",
+        action: function () {
+          updateTime(-1);
+          if (checkedWallOfShame) {
+            updateScene("useWallOfShame");
+          } else {
+            updateScene("wallOfShame");
+            checkedWallOfShame = true;
+          }
+        },
+      },
+      {
+        text: "Use inventory item",
+        action: function () {
+          if (inventory.includes("goldfish") && !ateGoldfish) {
+            updateScene("useGoldFish");
+          } else {
+            updateScene("noGoldFish");
+          }
+        }
+      },
+      {
+        text: "Pretend to blow nose in corner",
+        action: function () {
+          updateTime(-1);
+        },
+        nextScene: "corner"
+      },
+      {
+        text: "Pull out phone to cheat",
+        action: function () {
+          if (timeleft > 10) {
+            updateScene("checkPhoneNotYet");
+          } else if (timeleft > 5) {
+            updateScene("checkPhoneAlmost");
+          } else {
+            updateScene("checkPhoneYes");
+          }
+        }
+      }
+    ]
+  },
+
+  noGoldFish: {
+    title: "You don't have anything",
+    text: "You don't have any items in your inventory. Maybe you should try to find something to help you with the quiz",
+    choices: [
+      {
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  useGoldFish: {
+    title: "You have goldfish",
+    text: "You have goldfish in your inventory. Wanna eat it?",
+    choices: [
+      {
+        text: "Eat the goldfish",
+        action: function () {
+          ateGoldfish = true;
+          updateHealth(-20);
+          updateProgress(20);
+          updateScene("ateGoldFish");
+        }
+      },
+      {
+        text: "Don't eat the goldfish",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  ateGoldFish: {
+    title: "You ate the goldfish",
+    text: "You ate it fatty. The goldfish imbued you with the power of cheddar. You feel a surge of energy that lets you solve a couple problems. You're lactose intolerant though so you lost 20 health.",
+    choices: [
+      {
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  checkPhoneNotYet: {
+    title: "Trying to check the phone?",
+    text: "Don't do that yet...you still have time, try something else first. Don't wanna get caught by Ms. Fong",
+    choices: [
+      {
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  checkPhoneAlmost: {
+    title: "Trying to check the phone?",
+    text: "You're running out of time, but you still have a little bit left. Maybe come back in a bit after trying something else",
+    choices: [
+      {
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  checkPhoneYes: {
+    title: "Trying to check the phone?",
+    text: "You are desparate and need a solution now, go ahead and check the wretched device...unless you're too scared",
+    choices: [
+      {
+        text: "Check the phone",
+        nextScene: "slimedOutEnding"
+      },
+      {
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  friendDesk: {
+    title: "The Friend's Desk",
+    text: "Your friend seems just as stumped as you. But he’s a little further ahead...",
+    choices: [
+      {
+        text: "copy his work",
+        action: function () {
+          updateTime(-1);
+          timesAskedFriend++;
+          if (timesAskedFriend >= 3) {
+            updateScene("noMoreCopy");
+          } else {
+            updateProgress(8);
+            updateScene("yourDesk");
+          }
+        },
+      }
+    ]
+  },
+
+  noMoreCopy: {
+    title: "The Friend's Desk",
+    text: "You copied too many times. Your friend is now mad at you and refuses to let you copy",
+    choices: [
+      {
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  wallOfShame: {
+    title: "The Wall of Shame",
+    text: "You see a theorem that matches what the question on the quiz asks. That might be right...right?",
+    choices: [
+      {
+        text: "Copy it down",
+        action: function () {
+          updateTime(-1);
+          updateProgress(10);
+        },
+        nextScene: "yourDesk"
+      },
+      {
+        text: "Go back",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  useWallOfShame: {
+    title: "The Wall of Shame",
+    text: "You already copied the theorem. Doesn't seem like anything else helpful is left",
+    choices: [
+      {
+        text: "Go back",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  corner: {
+    title: "The Corner",
+    text: "You pretend to blow your nose. There’s some goldfish in the basket.",
+    choices: [
+      {
+        text: "Ask for bathroom pass",
+        action: function () {
+          updateTime(-1);
+        },
+        nextScene: "bathroomPass"
+      },
+      {
+        text: "Grab some goldfish like a fatty and then go back",
+        action: function () {
+          updateTime(-1);
+          pickUpItem("goldfish");
+        },
+        nextScene: "yourDesk"
+      },
+      {
+        text: "Peek into hallway through doorway",
+        action: function () {
+          updateTime(-1);
+        },
+        nextScene: "doorway"
+      }
+    ]
+  },
+
+  bathroomPass: {
+    title: "Hell to the NAW",
+    text: "Ms. Fong says no. You are not allowed to go to the bathroom.",
+    choices: [
+      {
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
+      }
+    ]
+  },
+
+  doorway: {
+    title: "The Doorway",
+    text: "You peek into the hallway and see other students going to lunch in their freedom. You even see Mr. Price skipping down the hall.",
+    choices: [
+      {
+        text: "Try to run into hallway",
+        action: function () {
+          updateTime(-1);
+        },
         nextScene: "hallway"
+      },
+      {
+        text: "go back to desk",
+        nextScene: "yourDesk"
       }
     ]
   },
 
   hallway: {
     title: "The Hallway",
-    text: "The hallway is dark and silent.",
+    text: "You try to bolt out into the hall but then run into an invisible wall of Ms. Fong’s pure aura. Ms. Price whistles like you should’ve known. You cannot escape this way.",
     choices: [
       {
-        text: "backyard",
-        nextScene: "lockedDoor"
+        text: "Go back to your desk",
+        nextScene: "yourDesk"
       }
     ]
   },
 
-   lockedDoor: {
-    title: "The Locked Door",
-    text: "The door handle doesn't move.",
+  doneWithQuiz: {
+    title: "You finished the quiz!",
+    text: "Quickly! Turn it in before Ms. Fong realizes you have 3 missing assignments to make up too!",
     choices: [
       {
-        text: "Try to open it",
-        action: unlockDoor
-      },
-      {
-        text: "Go back",
-        nextScene: "backyard"
+        text: "Sneakily put the quiz in the bin",
+        nextScene: "escapeEnding"
       }
     ]
   },
 
-   solution: {
-    title: "The solution",
-    text: "You solved the mystery!",
-    
+  // SOLUTIONS
+  timeOutEnding: {
+    title: "Your time has run out :(",
+    text: "You keep scrambling only to look as your watch ticks further and further past the time you said you’d meet your friends. They’re certainly already gambling without you and won’t let you join now that you’ve stood them up. Your entire week is ruined because now you have irresponsible money that you haven’t gambled away. You will certainly now bribe Mr. D to give you an A on his test later, and while this will get you into Stanford, it will also cause the secret police to track you down when they find out what you did. You will spend the rest of your life in a Siberian prison once Trump trades you to Russia in exchange for Brittney Griner."
+  },
+
+  slimedOutEnding: {
+    title: "That won't go well...",
+    text: "You try to discretely unlock your phone by taking it out of your Yondr pouch that you didn’t lock at the gate. Face ID fails to recognize you because of how much your hands are shaking. You bring it up a little closer to your face before you hear a voice behind you that sends chills down your spine. “I told you to get rid of that wretched device! If you won’t put that phone away, I will put you away!” Ms. Fong locks you away in the basement where you have to solve washer and disk method problems for the rest of your life. She also puts you on the wall of SHAME back upstairs."
+  },
+
+  escapeEnding: {
+    title: "You escaped!",
+    text: "You escape! Congratulations, you will now spend the rest of lunch gambling until an OUSD culture keeper storms into the Burger King to shut everything down."
   }
-};
+}
 
 // --------------------------------------------------
 // UPDATE SCENES
@@ -166,9 +416,16 @@ updateScene(currentScene);
 
 // Create a variable for health
 let health = 100;
+let timeleft = 20;
+let progresspercent = 35;
+let timesAskedFriend = 0;
+let checkedWallOfShame = false;
+let ateGoldfish = false;
 
 // Display current health
 const healthDisplay = document.getElementById("health-display");
+const timeDisplay = document.getElementById("time-display");
+const progressDisplay = document.getElementById("progress-display");
 
 // Create a function to update health 
 function updateHealth(amount) {
@@ -176,8 +433,29 @@ function updateHealth(amount) {
   healthDisplay.textContent = health;
 }
 
+// Create a function to update time
+function updateTime(amount) {
+  timeleft += amount;
+  timeDisplay.textContent = timeleft;
+  if (timeleft <= 0) {
+    updateScene("timeOutEnding");
+  }
+}
+
+// Create a function to update progress
+function updateProgress(amount) {
+  progresspercent += amount;
+  if (progresspercent >= 100) {
+    progresspercent = 100;
+    updateScene("doneWithQuiz");
+  }
+  progressDisplay.textContent = progresspercent;
+}
+
 // This refreshes the health display
 updateHealth(0);
+updateTime(0);
+updateProgress(0);
 
 // --------------------------------------------------
 // INVENTORY
@@ -195,8 +473,8 @@ const messageDisplay = document.getElementById("message-display");
 
 // Create a function to update inventory 
 function pickUpItem(itemName) {
-    // Add itemName to the inventory array
-    // Show the updated inventory on the page
+  // Add itemName to the inventory array
+  // Show the updated inventory on the page
   inventory.push(itemName);
   inventoryDisplay.textContent = inventory.join(", ");
 }
