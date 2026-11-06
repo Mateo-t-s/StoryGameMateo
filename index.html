@@ -3,57 +3,141 @@
 <html lang="en">
 
 <head>
+    <link rel="style    sheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+
+    <!-- <style>
+        .emphasis {
+            color: orange;
+            text-decoration: underline;
+            size: 50px;
+        }
+        .heading {
+            color: white;
+            text-decoration: underline;
+            size: 50px;
+            padding: 100px;
+
+        }
+        .card {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid red;
+            /* background-color: green; */
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYAbXFpmq3BEP0zs6MHopgDFcDpBAREmdphNVcQsx6XcyEO3H8lUOZv3uR&s=10");
+        }
+        #file {
+            color: pink;
+            text-decoration: underline;
+            size: 50px;
+        }
+    </style> -->
 </head>
 
 <body>
-    <h1>Welcome to Escape From Ms. Fong's Classroom After the Bell Rings</h1>
-    <p>You are in the midst of a strenuous Fong quiz when the bell rings, signaling lunchtime. Sadly, Ms. Fong is not
-        required to obey the rules of the school, and will keep you in class until you finish the quiz.</p>
-    <p>You are supposed to go play craps in the Burger King across the street and need a way to escape before it's too
-        late.</p>
-    <p>Time is ticking. You need to act quickly without being noticed. Good luck!</p>
-    <img src="https://png.pngtree.com/png-clipart/20210801/original/pngtree-cute-triangle-ruler-math-school-emoji-emoji-png-image_6599577.jpg"
-        width="200">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <h1 class="heading">Welcome to Escape From Ms. Fong's Classroom After the Bell
+        Rings</h1>
+    <h3>The math ain't mathing, can you escape?</h3>
+    <section class="card">
+        <p>You are in the midst of a strenuous Fong quiz when the bell rings, signaling lunchtime. Sadly, Ms. Fong is
+            not
+            required to obey the rules of the school, and will keep you in class until you finish the quiz.</p>
+        <p>You are supposed to go play craps in the Burger King across the street and need a way to escape before it's
+            too
+            late.</p>
+        <p>Time is ticking. You need to act quickly without being noticed. Good luck!</p>
+        <img src="https://www.shutterstock.com/image-photo/student-holds-math-exam-disappointed-260nw-467963879.jpg"
+            width="200">
+    </section>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navigate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="game.html">Play the Game!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About the creator</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            References
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://www.youtube.com/watch?v=lh744j1Vgos">ACM Digital Library (Association for Computing Machinery)</a></li>
+                            <li><a class="dropdown-item" href="https://www.youtube.com/watch?v=lh744j1Vgos">IEEE Xplore Digital Library (Institute of Electrical and Electronics Engineers)</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="https://www.youtube.com/watch?v=lh744j1Vgos">Request Additional Citations</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">DOJ Epstein Files</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="game.html">Play the game</a></li>
-        <li><a href="about.html">About the creator</a></li>
-        <li><a href="https://guthib.com">Contact</a></li>
-    </ul>
-    <form>
-        <p>Are you racism?</p>
-        <label for="yes">Yes</label>
-        <input type="radio" id="yes" name="racism" value="yes">
-        <label for="maybe">No</label>
-        <input type="radio" id="no" name="racism" value="no">
-        
-        <br>
-        <br>
+    <div class="card">
+        <!-- <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Play the game</a></li>
+            <li style="font-size: 25px"><a href="about.html">About the creator</a></li>
+            <li style="font-size: 80px"><a href="https://guthib.com">Contact</a></li>
+        </ul> -->
+        <!-- <form>
+            <p>Are you racism?</p>
+            <label for="yes">Yes</label>
+            <input type="radio" id="yes" name="racism" value="yes">
+            <label for="maybe">No</label>
+            <input type="radio" id="no" name="racism" value="no">
 
-        <label for="worst">Choose worst quarterback:</label>
-        <select name="worst" id="worst">
-            <option value="option1">Justin Herbert</option>
-            <option value="option2">Chargers QB</option>
-            <option value="option3">Madison Beer's Boyfriend</option>
-        </select>
+            <br>
+            <br>
 
-        <br>
-        <br>
-        
-        <label for="social">Enter your social security number:</label>
-        <input type="text" name="social" placeholder="Social Security Number" id="social">
+            <label for="worst">Choose worst quarterback:</label>
+            <select name="worst" id="worst">
+                <option value="option1">Justin Herbert</option>
+                <option value="option2">Chargers QB</option>
+                <option value="option3">Madison Beer's Boyfriend</option>
+            </select>
 
-        <br>
-        <br>
+            <br>
+            <br>
 
-        <label for="file">Upload your most recent credit card bill:</label>
-        <input type="file" name="file" id="file">
+            <label for="social">Enter your social security number:</label>
+            <input type="text" name="social" placeholder="Social Security Number" id="social">
 
-    </form>
+            <br>
+            <br>
+
+            <label id="file" for="file">Upload your most recent credit card bill:</label>
+            <input type="file" name="file" id="file">
+            
+            <br>
+            <input type="submit" value="Submit">
+        </form> -->
+    </div>
 </body>
 
 </html>

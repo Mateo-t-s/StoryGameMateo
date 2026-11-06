@@ -2,14 +2,23 @@
 <html lang="en">
 
 <head>
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
 
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+
     <header>
         <h1>Welcome to Escape From Ms. Fong's Classroom After the Bell Rings</h1>
         <nav>
@@ -40,22 +49,32 @@
             <div id="choices-container"> </div>
         </section>
 
+        <div class="container text-center p-5">
+            <div class="row border border-dark">
+                <div class="col">
+                    Current HP:
+                </div>
+                <div class="col">
+                    Time left:
+                </div>
+                <div class="col">
+                    Progress Percent:
+                </div>
+            </div>
+            <div class="row border">
+                <div class="col">
+                    <span id="health-display"> 100</span>
+                </div>
+                <div class="col">
+                    <span id="time-display"> 20</span>
+                </div>
+                <div class="col">
+                    <span id="progress-display"> 35</span>
+                </div>
+            </div>
+        </div>
+        
         <section>
-            <p> Current HP:</p>
-            <ul>
-                <li id="health-display"> 100</li>
-            </ul>
-
-            <p> Time left:</p>
-            <ul>
-                <li id="time-display"> 20</li>
-            </ul>
-
-            <p> Progress Percent:</p>
-            <ul>
-                <li id="progress-display"> 35</li>
-            </ul>
-
             <p> Inventory:</p>
             <ul>
                 <li id="inventory-display"> </li>

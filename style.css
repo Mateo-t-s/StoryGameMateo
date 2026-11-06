@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+head {
+    color: pink;
+}
+
+body {
+    margin: 20px;
+    padding: 20px;
+    font-family: 'Sofia', sans-serif;
+}
+
+.emphasis {
+    color: orange;
+    text-decoration: underline;
+    size: 50px;
+}
+
+.heading {
+    color: white;
+    background:cyan;
+    text-decoration: underline;
+    size: 50px;
+    margin: 20px;
+    padding: 100px;
+    border: 2px dotted red;
+
+}
+
+.card {
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    border: 2px solid red;
+    width: 1000px;
+    /* background-color: green; */
+    background-image: url("https://www.edarabia.com/wp-content/uploads/2019/10/taiwan-flag.jpg");
+}
+
+#file {
+    color: pink;
+    text-decoration: underline;
+    size: 50px;
+}
